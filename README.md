@@ -1,6 +1,7 @@
 # 📢 Vocalize - Plataforma de Comunicação Corporativa
 
-![Vocalize Banner](https://via.placeholder.com/1200x400/1e293b/ffffff?text=Vocalize+-+Corporate+Communication)
+
+![Vocalize Banner](<img width="2400" height="1350" alt="Captura de tela de 2026-03-24 20-13-52" src="https://github.com/user-attachments/assets/0aea3d98-271f-400c-bccd-3b8c11acfc25" />)
 
 > **Vocalize** é uma plataforma Full-Stack desenvolvida para centralizar, modernizar e proteger o fluxo de comunicação interna de empresas. O sistema substitui murais físicos e e-mails dispersos por um dashboard dinâmico, seguro e responsivo.
 
