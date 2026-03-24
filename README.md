@@ -1,73 +1,114 @@
-# React + TypeScript + Vite
+# 📢 Vocalize - Plataforma de Comunicação Corporativa
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Vocalize Banner](https://via.placeholder.com/1200x400/1e293b/ffffff?text=Vocalize+-+Corporate+Communication)
 
-Currently, two official plugins are available:
+> **Vocalize** é uma plataforma Full-Stack desenvolvida para centralizar, modernizar e proteger o fluxo de comunicação interna de empresas. O sistema substitui murais físicos e e-mails dispersos por um dashboard dinâmico, seguro e responsivo.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🌐 **Acesso ao Sistema em Produção:** [Insira o link da Vercel aqui]  
+⚙️ **Status da API:** [Insira o link do Render aqui]/api/status
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🎯 O Desafio e a Solução
+A comunicação empresarial ineficiente gera ruídos e atrasos nos processos. O Vocalize foi arquitetado para resolver esse gargalo, garantindo que comunicados da diretoria, atualizações de TI e avisos de RH cheguem a todos os colaboradores de forma clara e padronizada. 
 
-## Expanding the ESLint configuration
+O sistema conta com um painel de administração blindado, onde apenas usuários com permissões específicas podem redigir e publicar avisos utilizando um editor de texto rico, enquanto os colaboradores consomem a informação em uma interface otimizada para leitura.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## ✨ Principais Funcionalidades
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **Autenticação Segura (JWT):** Sistema de login robusto com controle de acesso baseado em cargos (Role-Based Access Control - RBAC). Apenas usuários com a flag `admin` podem gerenciar os comunicados.
+- **Editor Rich Text Avançado:** Integração com **React Quill** para formatação visual (WYSIWYG) de comunicados, permitindo listas, negrito, itálico e links estruturados.
+- **Segurança contra Ataques XSS:** Implementação da biblioteca **DOMPurify** para higienizar (sanitize) todo o conteúdo HTML injetado, protegendo a aplicação contra scripts maliciosos.
+- **Interface Fluida e Responsiva:** UI/UX moderna construída com **Tailwind CSS**, garantindo acessibilidade e leitura confortável em desktops e dispositivos móveis.
+- **Dark Mode Nativo:** Suporte completo e integrado a temas claro e escuro para conforto visual do usuário.
+- **API RESTful Otimizada:** Backend estruturado seguindo os padrões do Node.js, isolando rotas, controladores e serviços.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 🛠️ Tecnologias Utilizadas
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+O projeto foi construído utilizando as tecnologias mais modernas e requisitadas do mercado:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Frontend (Interface)
+- **React 19** com **Vite** (Máxima performance de build)
+- **TypeScript** (Tipagem estática e segurança de código)
+- **Tailwind CSS** (Estilização utilitária e Dark Mode)
+- **React Router DOM** (Navegação de página única - SPA)
+- **Axios** (Integração assíncrona com a API)
+- **React Quill & DOMPurify** (Edição de texto e cibersegurança)
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### Backend (API & Lógica)
+- **Node.js** com **Express**
+- **TypeScript**
+- **JSON Web Token (JWT)** & **Bcrypt** (Criptografia e Autenticação)
+- **CORS** & **Dotenv** (Segurança de rotas e variáveis de ambiente)
+
+### Banco de Dados & Infraestrutura
+- **MongoDB** (Banco de dados NoSQL flexível e escalável)
+- **Mongoose** (Modelagem de dados/ODM)
+- **Vercel** (Deploy contínuo do Frontend)
+- **Render** (Hospedagem em nuvem da API Node.js)
+- **MongoDB Atlas** (Cluster de banco de dados na nuvem)
+
+---
+
+## 🚀 Como Executar o Projeto Localmente
+
+Se você deseja testar a aplicação na sua máquina, siga os passos abaixo:
+
+### Pré-requisitos
+- [Node.js](https://nodejs.org/) (versão 18+)
+- [MongoDB](https://www.mongodb.com/) rodando localmente ou uma conta no MongoDB Atlas.
+
+### 1. Clonando o Repositório
+```bash
+git clone [https://github.com/SEU_USUARIO/vocalize-web.git](https://github.com/SEU_USUARIO/vocalize-web.git)
+git clone [https://github.com/SEU_USUARIO/vocalize-api.git](https://github.com/SEU_USUARIO/vocalize-api.git)
+
+2. Configurando o Backend (API)
+Bash
+cd vocalize-api
+npm install
+
+Crie um arquivo .env na raiz do backend com as seguintes chaves:
+
+Snippet de código
+PORT=3000
+MONGO_URI=sua_string_de_conexao_do_mongodb
+JWT_SECRET=sua_chave_secreta_super_segura
+
+Inicie o servidor de desenvolvimento:
+
+Bash
+npm run dev
+3. Configurando o Frontend (Web)
+Em outro terminal:
+
+Bash
+cd vocalize-web
+npm install
+Inicie a interface de usuário:
+
+Bash
+npm run dev
+👨‍💻 Autor
+Igor Dias Desenvolvedor Full-Stack | Análise e Desenvolvimento de Sistemas
+
+🔗 LinkedIn
+
+💻 GitHub
+
+
+***
+
+### 📸 O Toque de Mestre (Próximo Passo)
+
+No código do README acima, eu coloquei uma imagem genérica no topo (`![Vocalize Banner]...`). Para o seu GitHub ficar de "cair o queixo", a melhor coisa que você pode fazer é:
+
+1. Tirar um print bem bonito da sua tela inicial do Vocalize (de preferência no Dark Mode, mostrando os comunicados estilizados que criamos).
+2. Salvar essa imagem e arrastá-la para dentro da caixa de texto de edição do GitHub. O próprio GitHub vai gerar um link para a sua imagem.
+3. Substituir o link de *placeholder* que eu deixei pelo link da sua foto real.
+
+Não se esqueça de preencher os seus links lá na parte do Autor e colar as URLs reais da Vercel e do Render ali no começo! 
+
+O que achou da estrutura? Mostra todo o peso das tecnologias que utilizamos!
