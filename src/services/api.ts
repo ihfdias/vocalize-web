@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const api = axios.create({
-  baseURL: 'https://vocalize-api.onrender.com',
+  baseURL: 'https://vocalize-api.onrender.com/api',
 });
 
 api.interceptors.request.use((config) => {
