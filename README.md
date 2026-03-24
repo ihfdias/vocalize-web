@@ -1,4 +1,4 @@
-# 📢 Vocalize - Plataforma de Comunicação Corporativa
+# Vocalize - Plataforma de Comunicação Corporativa
 
 
 ![Vocalize Banner] <img width="2400" height="1350" alt="Captura de tela de 2026-03-24 20-13-52" src="https://github.com/user-attachments/assets/4409fac9-cb22-4819-8089-9516981ebf3c" />
@@ -6,17 +6,17 @@
 
 > **Vocalize** é uma plataforma Full-Stack desenvolvida para centralizar, modernizar e proteger o fluxo de comunicação interna de empresas. O sistema substitui murais físicos e e-mails dispersos por um dashboard dinâmico, seguro e responsivo.
 
-🌐 **Acesso ao Sistema em Produção:** [Insira o link da Vercel aqui]  
-⚙️ **Status da API:** [Insira o link do Render aqui]/api/status
+**Acesso ao Sistema em Produção:** [Insira o link da Vercel aqui]  
+**Status da API:** [Insira o link do Render aqui]/api/status
 
 ---
 
-## 🎯 O Desafio e a Solução
+## O Desafio e a Solução
 A comunicação empresarial ineficiente gera ruídos e atrasos nos processos. O Vocalize foi arquitetado para resolver esse gargalo, garantindo que comunicados da diretoria, atualizações de TI e avisos de RH cheguem a todos os colaboradores de forma clara e padronizada. 
 
 O sistema conta com um painel de administração blindado, onde apenas usuários com permissões específicas podem redigir e publicar avisos utilizando um editor de texto rico, enquanto os colaboradores consomem a informação em uma interface otimizada para leitura.
 
-## ✨ Principais Funcionalidades
+## Principais Funcionalidades
 
 - **Autenticação Segura (JWT):** Sistema de login robusto com controle de acesso baseado em cargos (Role-Based Access Control - RBAC). Apenas usuários com a flag `admin` podem gerenciar os comunicados.
 - **Editor Rich Text Avançado:** Integração com **React Quill** para formatação visual (WYSIWYG) de comunicados, permitindo listas, negrito, itálico e links estruturados.
@@ -27,7 +27,7 @@ O sistema conta com um painel de administração blindado, onde apenas usuários
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 O projeto foi construído utilizando as tecnologias mais modernas e requisitadas do mercado:
 
@@ -54,7 +54,7 @@ O projeto foi construído utilizando as tecnologias mais modernas e requisitadas
 
 ---
 
-## 🚀 Como Executar o Projeto Localmente
+## Como Executar o Projeto Localmente
 
 Se você deseja testar a aplicação na sua máquina, siga os passos abaixo:
 
@@ -62,43 +62,21 @@ Se você deseja testar a aplicação na sua máquina, siga os passos abaixo:
 - [Node.js](https://nodejs.org/) (versão 18+)
 - [MongoDB](https://www.mongodb.com/) rodando localmente ou uma conta no MongoDB Atlas.
 
-### 1. Clonando o Repositório
+### 1. Clonando os Repositórios
+
+Abra o seu terminal e clone os projetos para a sua máquina:
+
 ```bash
-git clone [https://github.com/SEU_USUARIO/vocalize-web.git](https://github.com/SEU_USUARIO/vocalize-web.git)
-git clone [https://github.com/SEU_USUARIO/vocalize-api.git](https://github.com/SEU_USUARIO/vocalize-api.git)
+# Clone a interface (Frontend)
+git clone [https://github.com/ihfdias/vocalize-web.git](https://github.com/ihfdias/vocalize-web.git)
 
-2. Configurando o Backend (API)
-Bash
-cd vocalize-api
-npm install
+# Clone a API (Backend)
+git clone [https://github.com/ihfdias/Vocalize-API.git](https://github.com/ihfdias/Vocalize-API.git)
 
-Crie um arquivo .env na raiz do backend com as seguintes chaves:
+---
 
-Snippet de código
-PORT=3000
-MONGO_URI=sua_string_de_conexao_do_mongodb
-JWT_SECRET=sua_chave_secreta_super_segura
+### 2. Configurando o Backend (API)
 
-Inicie o servidor de desenvolvimento:
-
-Bash
-npm run dev
-3. Configurando o Frontend (Web)
-Em outro terminal:
-
-Bash
-cd vocalize-web
-npm install
-Inicie a interface de usuário:
-
-Bash
-npm run dev
-👨‍💻 Autor
-Igor Dias Desenvolvedor Full-Stack | Análise e Desenvolvimento de Sistemas
-
-🔗 LinkedIn
-
-💻 GitHub
 
 
 
