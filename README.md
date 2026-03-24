@@ -72,10 +72,40 @@ git clone [https://github.com/ihfdias/vocalize-web.git](https://github.com/ihfdi
 
 # Clone a API (Backend)
 git clone [https://github.com/ihfdias/Vocalize-API.git](https://github.com/ihfdias/Vocalize-API.git)
-
----
+```
 
 ### 2. Configurando o Backend (API)
+
+```bash
+cd Vocalize-API
+npm install
+```
+### Crie um arquivo .env na raiz do projeto (dentro da pasta Vocalize-API) e configure suas credenciais:
+
+```Snippet de código
+PORT=3000
+MONGO_URI=sua_string_de_conexao_do_mongodb_atlas
+JWT_SECRET=sua_chave_secreta_super_segura
+```
+
+### 3. Configurando o Frontend (Web)
+Em um novo terminal, acesse a pasta do frontend e instale as dependências:
+
+```bash
+cd vocalize-web
+npm install
+```
+Inicie a interface de usuário:
+```bash
+npm run dev
+```
+### Autor
+Igor Dias
+Desenvolvedor Full-Stack | Estudante de Análise e Desenvolvimento de Sistemas
+
+
+
+
 
 
 
