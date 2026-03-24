@@ -99,16 +99,5 @@ Igor Dias Desenvolvedor Full-Stack | Análise e Desenvolvimento de Sistemas
 💻 GitHub
 
 
-***
 
-### 📸 O Toque de Mestre (Próximo Passo)
 
-No código do README acima, eu coloquei uma imagem genérica no topo (`![Vocalize Banner]...`). Para o seu GitHub ficar de "cair o queixo", a melhor coisa que você pode fazer é:
-
-1. Tirar um print bem bonito da sua tela inicial do Vocalize (de preferência no Dark Mode, mostrando os comunicados estilizados que criamos).
-2. Salvar essa imagem e arrastá-la para dentro da caixa de texto de edição do GitHub. O próprio GitHub vai gerar um link para a sua imagem.
-3. Substituir o link de *placeholder* que eu deixei pelo link da sua foto real.
-
-Não se esqueça de preencher os seus links lá na parte do Autor e colar as URLs reais da Vercel e do Render ali no começo! 
-
-O que achou da estrutura? Mostra todo o peso das tecnologias que utilizamos!
