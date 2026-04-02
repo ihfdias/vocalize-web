@@ -1,4 +1,10 @@
 {
+  "rewrites": [
+    {
+      "source": "/((?!assets/|vite\\.svg|favicon\\.ico).*)",
+      "destination": "/index.html"
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",

@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { api } from '../services/api';
 import ReactQuill from 'react-quill-new';
 import 'react-quill-new/dist/quill.snow.css';
+import Swal from 'sweetalert2';
 
 export default function EditAnnouncement() {
   const { id } = useParams();
@@ -21,7 +22,12 @@ export default function EditAnnouncement() {
         setContent(response.data.content);
       } catch (error) {
         console.error('Error fetching announcement:', error);
-        alert('Comunicado não encontrado!');
+        void Swal.fire({
+          icon: 'error',
+          title: 'Comunicado não encontrado',
+          text: 'Não foi possível carregar este comunicado.',
+          confirmButtonColor: '#4f46e5',
+        });
         navigate('/');
       } finally {
         setIsLoading(false);
@@ -31,19 +37,39 @@ export default function EditAnnouncement() {
     fetchAnnouncement();
   }, [id, navigate]);
 
-const handleSubmit = async (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+
     if (!content || content === '<p><br></p>') {
-      alert('O conteúdo do comunicado não pode estar vazio.');
+      await Swal.fire({
+        icon: 'warning',
+        title: 'Conteúdo obrigatório',
+        text: 'O conteúdo do comunicado não pode estar vazio.',
+        confirmButtonColor: '#4f46e5',
+      });
       return;
     }
 
+    setIsSubmitting(true);
+
     try {
       await api.put(`/announcements/${id}`, { title, content });
+      await Swal.fire({
+        icon: 'success',
+        title: 'Comunicado atualizado',
+        text: 'As alterações foram salvas com sucesso.',
+        confirmButtonColor: '#4f46e5',
+      });
       navigate(`/announcement/${id}`);
     } catch (error) {
       console.error('Error updating announcement:', error);
-      alert('Erro ao atualizar o comunicado. Verifique o console.');
+      await Swal.fire({
+        icon: 'error',
+        title: 'Falha ao salvar',
+        text: 'Erro ao atualizar o comunicado. Tente novamente.',
+        confirmButtonColor: '#4f46e5',
+      });
+    } finally {
       setIsSubmitting(false);
     }
   };

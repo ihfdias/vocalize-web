@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { api } from '../services/api';
 import ReactQuill from 'react-quill-new';
 import 'react-quill-new/dist/quill.snow.css';
+import Swal from 'sweetalert2';
 
 
 export default function NewAnnouncement() {
@@ -15,7 +16,12 @@ export default function NewAnnouncement() {
     e.preventDefault();
 
     if (!content || content === '<p><br></p>') {
-      alert('O conteúdo do comunicado não pode estar vazio.');
+      await Swal.fire({
+        icon: 'warning',
+        title: 'Conteúdo obrigatório',
+        text: 'O conteúdo do comunicado não pode estar vazio.',
+        confirmButtonColor: '#4f46e5',
+      });
       return;
     }
     
@@ -23,10 +29,21 @@ export default function NewAnnouncement() {
 
     try {
       await api.post('/announcements', { title, content });
+      await Swal.fire({
+        icon: 'success',
+        title: 'Comunicado publicado',
+        text: 'O comunicado foi criado com sucesso.',
+        confirmButtonColor: '#4f46e5',
+      });
       navigate('/');
     } catch (error) {
       console.error('Erro ao criar comunicado:', error);
-      alert('Erro ao criar o comunicado. Verifique o console.');
+      await Swal.fire({
+        icon: 'error',
+        title: 'Falha ao publicar',
+        text: 'Erro ao criar o comunicado. Tente novamente.',
+        confirmButtonColor: '#4f46e5',
+      });
       setIsSubmitting(false);
     }
   };

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const api = axios.create({
-  baseURL: 'https://vocalize-api.onrender.com/api',
+  baseURL: import.meta.env.VITE_API_URL ?? 'https://vocalize-api.onrender.com/api',
 });
 
 api.interceptors.request.use((config) => {
@@ -13,3 +13,19 @@ api.interceptors.request.use((config) => {
   
   return config;
 });
+
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      localStorage.removeItem('@Vocalize:token');
+      localStorage.removeItem('@Vocalize:role');
+
+      if (window.location.pathname !== '/login') {
+        window.location.href = '/login';
+      }
+    }
+
+    return Promise.reject(error);
+  },
+);

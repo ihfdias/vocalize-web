@@ -2,16 +2,17 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { api } from '../services/api';
 import DOMPurify from 'dompurify';
+import type { AxiosError } from 'axios';
 
 interface Announcement {
   _id: string;
   title: string;
   content: string;
   createdAt: string;
-  authorId: {
+  authorId?: {
     name: string;
     email: string;
-  };
+  } | null;
 }
 
 export default function Dashboard() {
@@ -38,17 +39,23 @@ export default function Dashboard() {
   }, [isDark]);
 
   useEffect(() => {
-    fetchAnnouncements();
-  }, []);
+    let isActive = true;
 
-  const fetchAnnouncements = async () => {
-    try {
-      const response = await api.get('/announcements');
-      setAnnouncements(response.data);
-    } catch (error) {
-      console.error('Error fetching announcements:', error);
-    }
-  };
+    void api
+      .get('/announcements')
+      .then((response) => {
+        if (isActive) {
+          setAnnouncements(response.data);
+        }
+      })
+      .catch((error: AxiosError) => {
+        console.error('Error fetching announcements:', error);
+      });
+
+    return () => {
+      isActive = false;
+    };
+  }, []);
 
   const handleAuthAction = () => {
     if (isAuthenticated) {
@@ -61,6 +68,14 @@ export default function Dashboard() {
   };
 
   const toggleTheme = () => setIsDark(!isDark);
+
+  const getAuthorName = (announcement: Announcement) => {
+    return announcement.authorId?.name?.trim() || 'Equipe Vocalize';
+  };
+
+  const getAuthorInitial = (announcement: Announcement) => {
+    return getAuthorName(announcement).charAt(0).toUpperCase();
+  };
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900 font-sans text-slate-900 dark:text-slate-50 transition-colors duration-300">
@@ -152,11 +167,11 @@ export default function Dashboard() {
 
                 <div className="pt-6 border-t border-slate-100 dark:border-slate-700 mt-auto flex items-center transition-colors">
                   <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white font-bold text-sm shadow-md">
-                    {announcement.authorId.name.charAt(0).toUpperCase()}
+                    {getAuthorInitial(announcement)}
                   </div>
                   <div className="ml-3 flex flex-col">
                     <span className="text-sm font-bold text-slate-900 dark:text-slate-200">
-                      {announcement.authorId.name}
+                      {getAuthorName(announcement)}
                     </span>
                     <span className="text-xs font-medium text-slate-500 dark:text-slate-400">
                       Publicado por

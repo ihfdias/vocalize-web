@@ -9,10 +9,10 @@ interface Announcement {
   title: string;
   content: string;
   createdAt: string;
-  authorId: {
+  authorId?: {
     name: string;
     email: string;
-  };
+  } | null;
 }
 
 export default function AnnouncementDetails() {
@@ -22,6 +22,8 @@ export default function AnnouncementDetails() {
   const [isLoading, setIsLoading] = useState(true);
 
   const userRole = localStorage.getItem('@Vocalize:role');
+  const authorName = announcement?.authorId?.name?.trim() || 'Equipe Vocalize';
+  const authorInitial = authorName.charAt(0).toUpperCase();
 
   useEffect(() => {
     const fetchAnnouncement = async () => {
@@ -113,11 +115,11 @@ export default function AnnouncementDetails() {
 
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white font-bold text-lg shadow-md shrink-0">
-                {announcement.authorId.name.charAt(0).toUpperCase()}
+                {authorInitial}
               </div>
               <div>
                 <h3 className="font-bold text-slate-900 dark:text-white text-lg leading-tight">
-                  {announcement.authorId.name}
+                  {authorName}
                 </h3>
                 <p className="text-sm text-slate-500 dark:text-slate-400">
                   Publicado em {new Date(announcement.createdAt).toLocaleDateString('pt-BR')}

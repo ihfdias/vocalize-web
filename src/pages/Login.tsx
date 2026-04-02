@@ -1,18 +1,35 @@
-import { useState, type FormEvent } from 'react';
+import { useEffect, useState, type FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { api } from '../services/api';
+import Swal from 'sweetalert2';
+import type { AxiosError } from 'axios';
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const navigate = useNavigate();
+
+  type LoginErrorResponse = {
+    message?: string;
+  };
+
+  useEffect(() => {
+    const token = localStorage.getItem('@Vocalize:token');
+    const role = localStorage.getItem('@Vocalize:role');
+
+    if (token && role === 'admin') {
+      navigate('/', { replace: true });
+    }
+  }, [navigate]);
 
   // Handle form submission and authentication
   const handleLogin = async (e: FormEvent) => {
     e.preventDefault();
     setError('');
+    setIsSubmitting(true);
 
     try {
       const response = await api.post('/users/login', { email, password });
@@ -22,8 +39,11 @@ export default function Login() {
       localStorage.setItem('@Vocalize:role', response.data.role);
 
       navigate('/');
-    } catch (err: any) {
-      setError(err.response?.data?.message || 'Erro ao fazer login. Verifique suas credenciais.');
+    } catch (err) {
+      const requestError = err as AxiosError<LoginErrorResponse>;
+      setError(requestError.response?.data?.message || 'Erro ao fazer login. Verifique suas credenciais.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -86,9 +106,14 @@ export default function Login() {
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full bg-indigo-600 text-white font-bold py-3 px-4 rounded-xl hover:bg-indigo-700 transition-all duration-300 hover:shadow-lg hover:shadow-indigo-600/30 hover:-translate-y-0.5"
+            disabled={isSubmitting}
+            className={`w-full bg-indigo-600 text-white font-bold py-3 px-4 rounded-xl transition-all duration-300 ${
+              isSubmitting
+                ? 'opacity-70 cursor-not-allowed'
+                : 'hover:bg-indigo-700 hover:shadow-lg hover:shadow-indigo-600/30 hover:-translate-y-0.5'
+            }`}
           >
-            Entrar no Sistema
+            {isSubmitting ? 'Entrando...' : 'Entrar no Sistema'}
           </button>
         </form>
 
@@ -96,7 +121,16 @@ export default function Login() {
         <div className="mt-8 pt-8 border-t border-slate-100 dark:border-slate-700 text-center">
           <button
             type="button"
-            onClick={() => navigate('/')}
+            onClick={async () => {
+              await Swal.fire({
+                icon: 'info',
+                title: 'Área pública',
+                text: 'Você será redirecionado para o mural público.',
+                confirmButtonColor: '#4f46e5',
+              });
+
+              navigate('/');
+            }}
             className="group w-full flex items-center justify-center gap-2 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 font-semibold py-3 px-4 rounded-xl hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors"
           >
             {/* Animated SVG Arrow */}
